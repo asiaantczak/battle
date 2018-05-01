@@ -1,14 +1,14 @@
 require 'sinatra/base'
-require 'player'
+require_relative './lib/player'
 
 class Battle < Sinatra::Base
 
-=begin
+
   configure do
     enable :sessions
     set :session_secret, "My session secret"
   end
-=end
+
 
   get '/' do
     erb(:index)
@@ -25,8 +25,10 @@ class Battle < Sinatra::Base
   end
 
   get '/success' do
-    erb(:success)
+    $player_2.reduce_hp(10)
+    redirect '/play'
   end
 
   run! if app_file == $0
+
 end
