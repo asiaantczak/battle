@@ -1,8 +1,10 @@
 feature 'Feature tests for Battle app' do
 
-  scenario 'creates a testing infrastructure' do
+  scenario 'adds players names' do
     visit('/')
-    expect(page).to have_content('Testing infrastructure working!')
+    fill_in('player_1', with: 'Joe')
+    fill_in('player_2', with: 'Gordon')
+    click_button "Play"
+    expect(page).to have_content('Joe vs Gordon')
   end
-
 end
